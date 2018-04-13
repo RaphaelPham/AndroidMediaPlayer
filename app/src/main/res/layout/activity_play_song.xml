@@ -27,6 +27,7 @@
             android:id="@+id/durationSeekBar"
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:maxHeight="5dp"
             android:layout_marginBottom="8dp"
             android:progressDrawable="@drawable/custom_seekbar_progress"
             android:thumb="@drawable/custom_seekbar_thumb" />
@@ -34,10 +35,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.4"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:weightSum="2">
 
             <TextView
@@ -47,6 +48,7 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:text="@string/current_time_example"
+                android:textSize="13sp"
                 android:textColor="#fff" />
 
             <TextView
@@ -56,6 +58,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="@string/duration_example"
+                android:textSize="13sp"
                 android:textColor="#fff" />
         </LinearLayout>
     </LinearLayout>
@@ -83,7 +86,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8.4"
                 android:orientation="vertical"
-                android:paddingLeft="5dp"
                 android:weightSum="2">
 
                 <TextView
@@ -126,7 +128,7 @@
                 android:id="@+id/btn_shuffle"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_weight="1.3"
+                android:layout_weight="1.2"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
@@ -142,8 +144,8 @@
 
             <ImageButton
                 android:id="@+id/btn_volume"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="8dp"
                 android:adjustViewBounds="true"
@@ -153,8 +155,8 @@
 
             <ImageButton
                 android:id="@+id/btn_prev2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:adjustViewBounds="true"
@@ -164,8 +166,8 @@
 
             <ImageButton
                 android:id="@+id/btn_play2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:adjustViewBounds="true"
@@ -175,8 +177,8 @@
 
             <ImageButton
                 android:id="@+id/btn_next2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:adjustViewBounds="true"
@@ -186,8 +188,8 @@
 
             <ImageButton
                 android:id="@+id/btn_repeat"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="8dp"
                 android:adjustViewBounds="true"

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Binder;
@@ -256,11 +257,11 @@ public class MusicService extends Service implements
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
+        Log.d("INFO", "onCompletion of MusicService called");
         if (!repeatOn) {
             goToNext();
         }
         currPlayPosition = 0;
-        lvSongs.smoothScrollToPosition(currSong);
         playSong();
     }
 
@@ -283,6 +284,7 @@ public class MusicService extends Service implements
                 .setSmallIcon(android.R.drawable.ic_media_play)
                 .setTicker(songTitle)
                 .setOngoing(true)
+                .setColor(Color.argb(255, 19, 186, 189))
                 .setContentIntent(pendInt)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -373,7 +375,6 @@ public class MusicService extends Service implements
     public void setSong(int songIndex){
         currSong = songIndex;
         currPlayPosition = 0;
-        updateUI();
     }
     
     public int getCurrSong() {
@@ -397,7 +398,7 @@ public class MusicService extends Service implements
         currPlayPosition = getCurrentPlayPosition();
         Log.d("INFO", "Paused " + songTitle);
         updateUI();
-}
+    }
 
     public void seekTo(int position){
         player.seekTo(position);
@@ -464,14 +465,17 @@ public class MusicService extends Service implements
     }
 
     public void updateUI() {
-        ((SongAdapter)lvSongs.getAdapter()).notifyDataSetChanged();
+        songAdapter.notifyDataSetChanged();
+        Log.d("INFO", "currSong = "+currSong);
+        Log.d("INFO", "songs is null? "+(songs==null));
+        Log.d("INFO", "songs size = "+songs.size());
         Song s;
         try {
             s = songs.get(currSong);
             songTitle = s.getTitle();
             songArtist = s.getArtist();
             songDuration = s.getDuration();
-            albumArt = (s.albumArt != null && !s.albumArt.equals("")) ? BitmapFactory.decodeFile(s.albumArt) : BitmapFactory.decodeResource(getResources(), R.drawable.default_art);
+            albumArt = (s.albumArt != null && !s.albumArt.equals("")) ? BitmapFactory.decodeFile(s.albumArt) : BitmapFactory.decodeResource(getResources(), R.drawable.app_bg);
             // Update the notification widgets
             nRemoteView.setTextViewText(R.id.tv_title, songTitle + " - " + songArtist);
             nRemoteView.setImageViewBitmap(R.id.iv_albumArt, albumArt);
@@ -480,25 +484,30 @@ public class MusicService extends Service implements
             // Update the media playback
             currentSongName.setText(songTitle);
             currentSinger.setText(songArtist);
-            // Update UI for the PlaySongActivity
-            currTitle.setText(songTitle);
-            currArtist.setText(songArtist);
-            if (s.albumArt != null && !s.albumArt.equals(""))
+            // Update UI for the PlaySongActivity but we have to check if PlaySongActivity is alive
+            if (currTitle != null)
+                currTitle.setText(songTitle);
+            if (currArtist != null)
+                currArtist.setText(songArtist);
+            if (s.albumArt != null && !s.albumArt.equals("") && upLayout != null)
                 upLayout.setBackground(new BitmapDrawable(getResources(), BitmapFactory.decodeFile(s.albumArt)));
-            currDuration.setText(millisToString(songDuration));
-            progressBar.setMax((int) songDuration / 1000);
-            updateProgressBar();
+            if (currDuration != null)
+                currDuration.setText(millisToString(songDuration));
+            if (progressBar != null && currTime != null) {
+                progressBar.setMax((int) songDuration / 1000);
+                //updateProgressBar();
+            }
         }
         catch (IndexOutOfBoundsException e) {
             Toast.makeText(this, "Should not control media playback on searching !", Toast.LENGTH_SHORT).show();
             Log.d("INFO", "IndexOutOfBoundsException due to control at search moment");
         }
         catch (NullPointerException e) {
-            Log.d("INFO", "Null pointer on Song s !");
+            Log.d("INFO", e.getMessage());
         }
         finally {
-            if (isPlaying()) {
-                // state playing
+            if (isPlaying()) { // playing
+                updateProgressBar();
                 nRemoteView.setImageViewResource(R.id.imb_play, R.drawable.pause);
                 nRemoteViewExpanded.setImageViewResource(R.id.imb_play, R.drawable.pause);
                 if (btnPlay != null) btnPlay.setImageResource(android.R.drawable.ic_media_pause);
@@ -507,8 +516,7 @@ public class MusicService extends Service implements
                     nBuilder.setSmallIcon(android.R.drawable.ic_media_play);
                     nManager.notify(nCode, nBuilder.build());
                 }
-            } else {
-                // state paused
+            } else { // paused
                 nRemoteView.setImageViewResource(R.id.imb_play, R.drawable.play_button);
                 nRemoteViewExpanded.setImageViewResource(R.id.imb_play, R.drawable.play_button);
                 if (btnPlay != null) btnPlay.setImageResource(android.R.drawable.ic_media_play);
@@ -573,9 +581,6 @@ public class MusicService extends Service implements
             }
             else if (ButtonPrev.equals(intent.getAction())) {
                 goToPrev();
-                int curSong = getCurrSong();
-                lvSongs.smoothScrollToPosition(curSong);
-
                 if (isPlaying()) {
                     playSong();
                 }
@@ -595,8 +600,6 @@ public class MusicService extends Service implements
             }
             else if (ButtonNext.equals(intent.getAction())) {
                 goToNext();
-                int curSong = getCurrSong();
-                lvSongs.smoothScrollToPosition(curSong);
                 if (isPlaying()) {
                     playSong();
                 }

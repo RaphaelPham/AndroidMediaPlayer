@@ -50,7 +50,7 @@ public class PlaySongActivity extends AppCompatActivity {
     protected static TextView currDuration;
     protected static LinearLayout upLayout;
     protected static SeekBar progressBar;
-    // Handler to update UI timer, progress bar etc,.
+    // Handler to update UI timer
     protected static Handler mHandler = new Handler();
 
     private LocalBroadcastManager mLocalBroadcastManager;
@@ -144,6 +144,7 @@ public class PlaySongActivity extends AppCompatActivity {
                     audio.adjustStreamVolume(AudioManager.STREAM_MUSIC , AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
             }
         });
+
         btnPlay2 = findViewById(R.id.btn_play2);
         btnPlay2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +168,6 @@ public class PlaySongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 musicSrv.goToPrev();
-
                 if (isPlaying()) {
                     musicSrv.playSong();
                 }
@@ -179,7 +179,6 @@ public class PlaySongActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 musicSrv.goToNext();
-
                 if (isPlaying()) {
                     musicSrv.playSong();
                 }
@@ -232,7 +231,8 @@ public class PlaySongActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        MainActivity.musicSrv.updateUI();
+        Log.d("INFO", "PlaySongActivity calls updateUI()");
+        musicSrv.updateUI();
     }
 
     @Override
@@ -326,7 +326,6 @@ public class PlaySongActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
     private String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;

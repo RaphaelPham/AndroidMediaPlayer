@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     static ArrayList<Song> songList;
     static SongAdapter songAdapter;
-    static ListView lvSongs;
+    private ListView lvSongs;
     static TextView currentSongName;
     static TextView currentSinger;
     private ImageButton btnPrev;
@@ -93,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
         mIntentFilter.addAction("action.close");
         mLocalBroadcastManager.registerReceiver(mBroadcastReceiver, mIntentFilter);
 
-        songList = new ArrayList<>();
-        getSongList();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            songList = bundle.getParcelableArrayList("SCANNED_SONGS");
 
         lvSongs = (ListView) findViewById(R.id.lv_songs);
         songAdapter = new SongAdapter(this, songList);
@@ -114,11 +115,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 view.startAnimation(buttonClick);
                 musicSrv.goToPrev();
-                lvSongs.smoothScrollToPosition(musicSrv.getCurrSong());
-
-                if (isPlaying()) {
+                lvSongs.smoothScrollToPosition(currSong);
+                if (isPlaying())
                     musicSrv.playSong();
-                }
             }
         });
 
@@ -132,8 +131,10 @@ public class MainActivity extends AppCompatActivity {
                     canAutoResume = false; // the service won't be able to auto-resume on audio focus changed
                 }
                 else { // paused -> playing
-                    if (musicSrv.currPlayPosition > 0)
+                    Log.d("INFO", "currentPlayPosition = " + musicSrv.currPlayPosition);
+                    if (musicSrv.currPlayPosition > 0) {
                         musicSrv.go(); // resume
+                    }
                     else {
                         musicSrv.playSong();
                     }
@@ -147,12 +148,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 view.startAnimation(buttonClick);
                 musicSrv.goToNext();
-                int curSong = musicSrv.getCurrSong();
-                lvSongs.smoothScrollToPosition(curSong);
-
-                if (isPlaying()) {
+                lvSongs.smoothScrollToPosition(currSong);
+                if (isPlaying())
                     musicSrv.playSong();
-                }
             }
         });
 
@@ -175,12 +173,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 itemClicked = true;
                 musicSrv.setSong(i);
-
-                lvSongs.smoothScrollToPosition(i);
-                if (isPlaying()) {
-                    musicSrv.playSong();
-                }
-
+                musicSrv.playSong();
                 startPlaySongActivity();
             }
         });
@@ -611,61 +604,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Helper function to retrieve all songs info
-     */
-    public void getSongList() {
-        Log.d("INFO", "Start get music contents");
-        // Retrieve the URI for external music files, and create a Cursor instance using the ContentResolver instance to query the music files
-        ContentResolver musicResolver = getContentResolver();
-        Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Uri albumUri = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
-        Cursor musicCursor = musicResolver.query(musicUri, null, selection, null, null);
-        // iterate over the results
-        if (musicCursor != null && musicCursor.moveToFirst()){
-            Log.d("INFO", "Have songs result on Sdcard");
-            //get columns
-            int idColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media._ID);
-            int titleColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE);
-            int artistColumn = musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.ARTIST);
-            int durationColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
-            int albumColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
-            //add songs to list
-            do {
-                long thisId = musicCursor.getLong(idColumn);
-                String thisTitle = musicCursor.getString(titleColumn);
-                String thisArtist = musicCursor.getString(artistColumn);
-                long thisDuration = musicCursor.getLong(durationColumn);
-                String thisAlbum = musicCursor.getString(albumColumn);
-                MediaMetadataRetriever mr = new MediaMetadataRetriever();
-                Uri trackUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, thisId);
-                mr.setDataSource(this, trackUri);
-                String thisGenre = mr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
-                Song thisSong = new Song(thisId, thisTitle, thisArtist, thisDuration, thisAlbum, thisGenre);
-                long idAlbum = musicCursor.getLong(albumIdColumn);
-                String selectAlbumArt = MediaStore.Audio.Albums._ID + "==" + idAlbum;
-                Cursor albumCursor = musicResolver.query(albumUri, null, selectAlbumArt, null, null);
-                if (albumCursor != null && albumCursor.moveToFirst()) {
-                    int x = albumCursor.getColumnIndex(android.provider.MediaStore.Audio.Albums.ALBUM_ART);
-                    thisSong.albumArt = albumCursor.getString(x);
-                    albumCursor.close();
-                }
-                songList.add(thisSong);
-            }
-            while (musicCursor.moveToNext());
-            musicCursor.close();
-        }
-        Log.d("INFO", "Loaded "+songList.size()+" songs");
-        // sort the songs list by title
-        Collections.sort(songList, new Comparator<Song>(){
-            public int compare(Song a, Song b){
-                return a.getTitle().compareTo(b.getTitle());
-            }
-        });
-    }
-
     public static String millisToString(long millis) {
         long second = (millis / 1000) % 60;
         long minute = (millis / (1000 * 60)) % 60;
@@ -754,5 +692,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, PlaySongActivity.class);
         startActivity(intent);
     }
-
 }

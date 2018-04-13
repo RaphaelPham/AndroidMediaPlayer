@@ -1,92 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:orientation="horizontal"
+    android:layout_height="150dp"
+    android:weightSum="10">
 
     <ImageView
         android:id="@+id/iv_albumArt"
-        android:layout_width="90dp"
+        android:layout_width="0dp"
+        android:layout_weight="4"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/default_art" />
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/app_bg" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="5.5"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/TextAppearance.Compat.Notification.Title"
-        android:layout_width="280dp"
-        android:layout_height="45dp"
-        android:layout_toEndOf="@+id/iv_albumArt"
-        android:layout_alignParentTop="true"
-        android:text="@string/default_title"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        android:duplicateParentState="true"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="false"
-        android:singleLine="true" >
-        <requestFocus android:duplicateParentState="true"
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextAppearance.Compat.Notification.Title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:text="@string/default_title"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:duplicateParentState="true"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
-    </TextView>
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true" >
+            <requestFocus android:duplicateParentState="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+        </TextView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/imb_prev"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/back" />
+
+            <ImageButton
+                android:id="@+id/imb_play"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_button" />
+
+            <ImageButton
+                android:id="@+id/imb_next"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/next" />
+
+        </LinearLayout>
+
+    </LinearLayout>
     <ImageButton
         android:id="@+id/btn_close"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="20dp"
         android:adjustViewBounds="true"
         android:background="@drawable/custom_button_bg"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/close" />
-
-    <ImageButton
-        android:id="@+id/imb_prev"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tv_title"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_alignStart="@+id/tv_title"
-        android:adjustViewBounds="true"
-        android:background="@drawable/custom_button_bg"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back" />
-
-    <ImageButton
-        android:id="@+id/imb_play"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tv_title"
-        android:layout_toEndOf="@+id/imb_prev"
-        android:layout_marginStart="7.5dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/custom_button_bg"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/play_button" />
-
-    <ImageButton
-        android:id="@+id/imb_next"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignEnd="@+id/tv_title"
-        android:layout_below="@+id/tv_title"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/custom_button_bg"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/next" />
-</RelativeLayout>
+</LinearLayout>
