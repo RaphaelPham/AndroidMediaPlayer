@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Media Player</string>
+    <string name="thu_vien">Bibliothèque musicale</string>
+    <string name="dang_phat">En cours</string>
+    <string name="shuffle">Lecture aléatoire</string>
+    <string name="repeat">Activer repeat</string>
+    <string name="search">Rechercher</string>
+    <string name="choose_to_play">Choisir pour lancer</string>
+    <string name="delete">Supprimer</string>
+    <string name="details">Détails</string>
+    <string name="play">Lancer</string>
+    <string name="share">Partager</string>
+    <string name="set_ringtone">Définir en tant que sonnerie</string>
+    <string name="dlg_title">Titre:</string>
+    <string name="dlg_artist">Artiste:</string>
+    <string name="dlg_duration">Durée:</string>
+    <string name="dlg_album">Album:</string>
+    <string name="dlg_path">Chemin d\'accès:</string>
+    <string name="Cancel">Annuler</string>
+    <string name="OK">Confirmer</string>
+    <string name="Delete_request">Supprimer</string>
+    <string name="share_with">Partager via</string>
+    <string name="app_description">MediaPlayer 1.0 - Lecteur de musique sous Android implémenté par des étudiants informatique de l\'ESTC.</string>
+    <string name="setTime">Configurer arrêt automatique</string>
+    <string name="search_view_hint">Rechercher des pistes</string>
+    <string name="turn_off">Désactivé</string>
+    <string name="after5min">Après 5 min.</string>
+    <string name="after10min">Après 10 min.</string>
+    <string name="after20min">Après 20 min.</string>
+    <string name="after30min">Après 30 min.</string>
+    <string name="after1hour">Après 1 heure</string>
+    <string name="after2hours">Après 2 heures</string>
+    <string name="tb_hen_gio_tat">Arrêt automatique désactivé</string>
+    <string name="tb_hen_gio_5p">Arrêt automatique au bout de 5 min.</string>
+    <string name="tb_hen_gio_10p">Arrêt automatique au bout de 10 min.</string>
+    <string name="tb_hen_gio_20p">Arrêt automatique au bout de 20 min.</string>
+    <string name="tb_hen_gio_30p">Arrêt automatique au bout de 30 min.</string>
+    <string name="tb_hen_gio_1h">Arrêt automatique au bout d\' 1 heure</string>
+    <string name="tb_hen_gio_2p">Arrêt automatique au bout de 2 heures</string>
+    <string name="choose_to_delete">Sélectionner des pistes à supprimer</string>
+    <string name="remove_playlist">Enlever la liste de lecture actuelle</string>
+    <string name="channel_name">Chaîne de notification MediaPlayer</string>
+    <string name="dlg_genre">Genre:</string>
+</resources>

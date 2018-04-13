@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/labelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dlgTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_song"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTitle" />
+
+    <TextView
+        android:id="@+id/labelArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_artist"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dlgTitle"/>
+
+    <TextView
+        android:id="@+id/dlgArtist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_artist"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelArtist" />
+
+    <TextView
+        android:id="@+id/labelAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_album"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dlgArtist" />
+
+    <TextView
+        android:id="@+id/dlgAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_album"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelAlbum" />
+
+    <TextView
+        android:id="@+id/labelGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_genre"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dlgAlbum" />
+
+    <TextView
+        android:id="@+id/dlgGenre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genre_example"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelGenre" />
+
+    <TextView
+        android:id="@+id/labelDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_duration"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dlgGenre" />
+
+    <TextView
+        android:id="@+id/dlgDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/duration_example"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelDuration" />
+
+    <TextView
+        android:id="@+id/labelPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dlg_path"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dlgDuration" />
+
+    <TextView
+        android:id="@+id/dlgPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/path_example"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelPath" />
+</android.support.constraint.ConstraintLayout>

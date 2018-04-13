@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/action_shuffle"
+        android:title="@string/shuffle"
+        android:icon="@drawable/shuffle_unselected"
+        yourapp:showAsAction="ifRoom" />
+    <item android:id="@+id/action_repeat"
+        android:title="@string/repeat"
+        android:icon="@drawable/rep"
+        yourapp:showAsAction="ifRoom" />
+    <item android:id="@+id/action_search"
+        android:title="@string/search"
+        android:icon="@android:drawable/ic_menu_search"
+        yourapp:showAsAction="ifRoom|collapseActionView"
+        yourapp:actionViewClass="android.support.v7.widget.SearchView" />
+    <item android:id="@+id/action_addToPlay" android:title="@string/choose_to_play" />
+    <item
+        android:id="@+id/action_removePlaylist"
+        yourapp:showAsAction="ifRoom"
+        android:visible="false"
+        android:title="@string/remove_playlist"/>
+    <item android:id="@+id/action_delete" android:title="@string/delete" />
+    <item android:id="@+id/action_setTime" android:title="@string/setTime" />
+    <item android:id="@+id/action_info" android:title="@string/details" />
+</menu>

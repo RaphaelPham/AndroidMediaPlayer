@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/iv_albumArt"
+        android:layout_width="55dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/default_art" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_toEndOf="@+id/iv_albumArt"
+        android:layout_alignParentTop="true"
+        android:text="@string/default_title"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:duplicateParentState="true"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="false"
+        android:singleLine="true">
+        <requestFocus android:duplicateParentState="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+    </TextView>
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:background="@drawable/custom_button_bg"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/close" />
+
+    <ImageButton
+        android:id="@+id/imb_prev"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_alignStart="@+id/tv_title"
+        android:adjustViewBounds="true"
+        android:background="@drawable/custom_button_bg"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/back" />
+
+    <ImageButton
+        android:id="@+id/imb_play"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_toEndOf="@+id/imb_prev"
+        android:layout_marginStart="5dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/custom_button_bg"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/play_button" />
+
+    <ImageButton
+        android:id="@+id/imb_next"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignEnd="@+id/tv_title"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/custom_button_bg"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/next" />
+</RelativeLayout>

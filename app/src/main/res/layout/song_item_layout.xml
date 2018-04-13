@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="62dp"
+    android:padding="4dp"
+    android:weightSum="10">
+
+    <ImageView
+        android:id="@+id/iv_song"
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/item"
+        android:scaleType="fitCenter"
+        android:layout_marginEnd="10dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7.6"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_song"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_artist"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:gravity="center"
+        android:text="@string/duration_example"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="13sp" />
+</LinearLayout>

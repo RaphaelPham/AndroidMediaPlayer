@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10"
+    tools:context="com.example.deadpool.mediaplayer.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/upLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.8"
+        android:background="@drawable/app_bg2"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8.8" />
+
+        <SeekBar
+            android:id="@+id/durationSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:progressDrawable="@drawable/custom_seekbar_progress"
+            android:thumb="@drawable/custom_seekbar_thumb" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_currenttime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/current_time_example"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tv_endtime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/duration_example"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.2"
+        android:background="@color/colorPrimary3"
+        android:orientation="vertical"
+        android:padding="13dp"
+        android:visibility="visible"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8.4"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/currentSongName"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="@string/default_song"
+                    android:textColor="#fff"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/currentSingerName"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/default_artist"
+                    android:textSize="18sp"
+                    android:focusable="true"
+                    android:duplicateParentState="true"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true">
+                    <requestFocus android:duplicateParentState="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true" />
+                </TextView>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_shuffle"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1.3"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/shuffle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_volume"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/speaker" />
+
+            <ImageButton
+                android:id="@+id/btn_prev2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/back" />
+
+            <ImageButton
+                android:id="@+id/btn_play2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginHorizontal="6dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_button" />
+
+            <ImageButton
+                android:id="@+id/btn_next2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/next" />
+
+            <ImageButton
+                android:id="@+id/btn_repeat"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/custom_button_bg"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/replay" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

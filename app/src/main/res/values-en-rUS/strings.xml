@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Media Player</string>
+    <string name="thu_vien">Music library</string>
+    <string name="dang_phat">Playing track</string>
+    <string name="shuffle">Shuffle mode</string>
+    <string name="repeat">Repeat mode</string>
+    <string name="search">Search</string>
+    <string name="choose_to_play">Choose to play</string>
+    <string name="delete">Delete</string>
+    <string name="details">Information</string>
+    <string name="play">Play</string>
+    <string name="share">Share</string>
+    <string name="set_ringtone">Set as ringtone</string>
+    <string name="dlg_title">Title:</string>
+    <string name="dlg_artist">Artist:</string>
+    <string name="dlg_duration">Duration:</string>
+    <string name="dlg_album">Album:</string>
+    <string name="dlg_path">Location:</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Delete_request">Delete</string>
+    <string name="share_with">Share track using</string>
+    <string name="app_description">MediaPlayer 1.0 - Music player demo for android built by students of UTC.</string>
+    <string name="setTime">Set up automatic stop</string>
+    <string name="search_view_hint">Search songs</string>
+    <string name="turn_off">Turned off</string>
+    <string name="after5min">After 5 min.</string>
+    <string name="after10min">After 10 min.</string>
+    <string name="after20min">After 20 min.</string>
+    <string name="after30min">After 30 min.</string>
+    <string name="after1hour">After 1 hour</string>
+    <string name="after2hours">After 2 hours</string>
+    <string name="tb_hen_gio_tat">Automatic stop turned off</string>
+    <string name="tb_hen_gio_5p">Automatic stop in 5 min.</string>
+    <string name="tb_hen_gio_10p">Automatic stop in 10 min.</string>
+    <string name="tb_hen_gio_20p">Automatic stop in 20 min.</string>
+    <string name="tb_hen_gio_30p">Automatic stop in 30 min.</string>
+    <string name="tb_hen_gio_1h">Automatic stop in 1 hour</string>
+    <string name="tb_hen_gio_2p">Automatic stop in 2 hours</string>
+    <string name="choose_to_delete">Choose to delete</string>
+    <string name="remove_playlist">Remove current playlist</string>
+    <string name="channel_name">MediaPlayer notification channel</string>
+    <string name="dlg_genre">Genre:</string>
+</resources>
