@@ -54,7 +54,7 @@
 
             <ImageButton
                 android:id="@+id/imb_prev"
-                android:layout_width="30dp"
+                android:layout_width="28dp"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
@@ -63,10 +63,10 @@
 
             <ImageButton
                 android:id="@+id/imb_play"
-                android:layout_width="30dp"
+                android:layout_width="28dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -74,7 +74,7 @@
 
             <ImageButton
                 android:id="@+id/imb_next"
-                android:layout_width="30dp"
+                android:layout_width="28dp"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"

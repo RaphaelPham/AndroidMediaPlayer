@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_height="150dp"
+    android:layout_height="145dp"
     android:weightSum="10">
 
     <ImageView
@@ -56,8 +56,8 @@
 
             <ImageButton
                 android:id="@+id/imb_prev"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -65,10 +65,10 @@
 
             <ImageButton
                 android:id="@+id/imb_play"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -76,8 +76,8 @@
 
             <ImageButton
                 android:id="@+id/imb_next"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
