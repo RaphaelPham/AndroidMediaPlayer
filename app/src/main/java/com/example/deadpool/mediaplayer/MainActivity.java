@@ -97,31 +97,30 @@ public class MainActivity extends AppCompatActivity {
         if (bundle != null)
             songList = bundle.getParcelableArrayList("SCANNED_SONGS");
 
-        lvSongs = (ListView) findViewById(R.id.lv_songs);
+        lvSongs = findViewById(R.id.lv_songs);
         songAdapter = new SongAdapter(this, songList);
         lvSongs.setAdapter(songAdapter);
         registerForContextMenu(lvSongs);
         lvSongs.setTextFilterEnabled(true);
 
-        currentSongName = (TextView) findViewById(R.id.tv_current_song);
+        currentSongName = findViewById(R.id.tv_current_song);
         currentSongName.setText(songAdapter.getItem(0).getTitle());
         currentSongName.setSelected(true);
-        currentSinger = (TextView) findViewById(R.id.tv_current_singer);
+        currentSinger = findViewById(R.id.tv_current_singer);
         currentSinger.setText(songAdapter.getItem(0).getArtist());
 
-        btnPrev = (ImageButton) findViewById(R.id.btn_prev1);
+        btnPrev = findViewById(R.id.btn_prev1);
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(buttonClick);
                 musicSrv.goToPrev();
-                lvSongs.smoothScrollToPosition(currSong);
                 if (isPlaying())
                     musicSrv.playSong();
             }
         });
 
-        btnPlay = (ImageButton) findViewById(R.id.btn_play1);
+        btnPlay = findViewById(R.id.btn_play1);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,19 +141,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnNext = (ImageButton) findViewById(R.id.btn_next1);
+        btnNext = findViewById(R.id.btn_next1);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(buttonClick);
                 musicSrv.goToNext();
-                lvSongs.smoothScrollToPosition(currSong);
                 if (isPlaying())
                     musicSrv.playSong();
             }
         });
 
-        // TEST Activity change
         currentSongName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

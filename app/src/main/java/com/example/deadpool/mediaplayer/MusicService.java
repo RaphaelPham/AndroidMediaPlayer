@@ -495,11 +495,9 @@ public class MusicService extends Service implements
                 currDuration.setText(millisToString(songDuration));
             if (progressBar != null && currTime != null) {
                 progressBar.setMax((int) songDuration / 1000);
-                //updateProgressBar();
             }
         }
         catch (IndexOutOfBoundsException e) {
-            Toast.makeText(this, "Should not control media playback on searching !", Toast.LENGTH_SHORT).show();
             Log.d("INFO", "IndexOutOfBoundsException due to control at search moment");
         }
         catch (NullPointerException e) {
