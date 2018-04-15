@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 300000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_5p, Toast.LENGTH_SHORT).show();
@@ -424,7 +424,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 600000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_10p, Toast.LENGTH_SHORT).show();
@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 1200000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_20p, Toast.LENGTH_SHORT).show();
@@ -448,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 1800000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_30p, Toast.LENGTH_SHORT).show();
@@ -460,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 3600000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_1h, Toast.LENGTH_SHORT).show();
@@ -472,7 +472,7 @@ public class MainActivity extends AppCompatActivity {
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
-                                        if (setTimeOn) MainActivity.this.finish();
+                                        if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 7200000);
                                 Toast.makeText(MainActivity.this, R.string.tb_hen_gio_2p, Toast.LENGTH_SHORT).show();
