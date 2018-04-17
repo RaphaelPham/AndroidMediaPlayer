@@ -90,7 +90,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Uri trackUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, thisId);
                 mr.setDataSource(this, trackUri);
                 String thisGenre = mr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
-                Song thisSong = new Song(thisId, thisTitle, thisArtist, thisDuration, thisAlbum, thisGenre);
+                Song thisSong = new Song(this, thisId, thisTitle, thisArtist, thisDuration, thisAlbum, thisGenre);
                 long idAlbum = musicCursor.getLong(albumIdColumn);
                 String selectAlbumArt = MediaStore.Audio.Albums._ID + "==" + idAlbum;
                 Cursor albumCursor = musicResolver.query(albumUri, null, selectAlbumArt, null, null);

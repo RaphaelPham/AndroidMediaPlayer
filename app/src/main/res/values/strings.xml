@@ -49,6 +49,6 @@
     <string name="tb_hen_gio_20p">Tự động tắt sau 20 phút !</string>
     <string name="tb_hen_gio_30p">Tự động tắt sau 30 phút !</string>
     <string name="tb_hen_gio_1h">Tự động tắt sau 1 giờ !</string>
-    <string name="tb_hen_gio_2p">Tự động tắt sau 2 giờ !</string>
+    <string name="tb_hen_gio_2h">Tự động tắt sau 2 giờ !</string>
     <string name="genre_example">Nhạc trẻ, tình yêu</string>
 </resources>

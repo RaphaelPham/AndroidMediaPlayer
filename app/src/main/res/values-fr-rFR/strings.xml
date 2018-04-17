@@ -37,7 +37,7 @@
     <string name="tb_hen_gio_20p">Arrêt automatique au bout de 20 min.</string>
     <string name="tb_hen_gio_30p">Arrêt automatique au bout de 30 min.</string>
     <string name="tb_hen_gio_1h">Arrêt automatique au bout d\' 1 heure</string>
-    <string name="tb_hen_gio_2p">Arrêt automatique au bout de 2 heures</string>
+    <string name="tb_hen_gio_2h">Arrêt automatique au bout de 2 heures</string>
     <string name="choose_to_delete">Sélectionner des pistes à supprimer</string>
     <string name="remove_playlist">Enlever la liste de lecture actuelle</string>
     <string name="channel_name">Chaîne de notification MediaPlayer</string>

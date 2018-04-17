@@ -18,10 +18,19 @@
         android:weightSum="10">
 
         <TextView
+            android:id="@+id/tvLyrics"
             android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8.6" />
+            android:layout_weight="8.6"
+            android:padding="12dp"
+            android:layout_margin="20dp"
+            android:background="@color/colorTransparent1"
+            android:textAlignment="center"
+            android:text="@string/default_song"
+            android:textColor="#fff"
+            android:scrollbars="vertical"
+            android:textSize="15sp"/>
 
         <SeekBar
             android:id="@+id/durationSeekBar"
@@ -29,6 +38,7 @@
             android:layout_height="20dp"
             android:maxHeight="5dp"
             android:layout_marginBottom="8dp"
+            android:clickable="false"
             android:progressDrawable="@drawable/custom_seekbar_progress"
             android:thumb="@drawable/custom_seekbar_thumb" />
 
@@ -49,6 +59,7 @@
                 android:gravity="start"
                 android:text="@string/current_time_example"
                 android:textSize="13sp"
+                android:clickable="false"
                 android:textColor="#fff" />
 
             <TextView
@@ -59,6 +70,7 @@
                 android:gravity="end"
                 android:text="@string/duration_example"
                 android:textSize="13sp"
+                android:clickable="false"
                 android:textColor="#fff" />
         </LinearLayout>
     </LinearLayout>

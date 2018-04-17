@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -21,17 +22,22 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+
+import es.dmoral.toasty.Toasty;
 
 import static com.example.deadpool.mediaplayer.MainActivity.*;
 import static com.example.deadpool.mediaplayer.MusicService.*;
@@ -50,6 +56,8 @@ public class PlaySongActivity extends AppCompatActivity {
     protected static TextView currDuration;
     protected static LinearLayout upLayout;
     protected static SeekBar progressBar;
+    protected static TextView tvLyrics;
+
     // Handler to update UI timer
     protected static Handler mHandler = new Handler();
 
@@ -82,6 +90,15 @@ public class PlaySongActivity extends AppCompatActivity {
         mLocalBroadcastManager.registerReceiver(mBroadcastReceiver, mIntentFilter);
 
         upLayout = findViewById(R.id.upLayout);
+        upLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tvLyrics.getVisibility() == View.VISIBLE)
+                    tvLyrics.setVisibility(View.INVISIBLE);
+                else
+                    tvLyrics.setVisibility(View.VISIBLE);
+            }
+        });
 
         currTitle = findViewById(R.id.currentSongName);
         currTitle.setSelected(true);
@@ -100,12 +117,12 @@ public class PlaySongActivity extends AppCompatActivity {
                 if (musicSrv.getShuffleOn()) {
                     btnShuffle.setImageResource(R.drawable.shuffle);
                     mOptionsMenu.findItem(R.id.action_shuffle).setIcon(R.drawable.shuffle_unselected);
-                    Toast.makeText(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT, true).show();
                 }
                 else {
                     btnShuffle.setImageResource(R.drawable.shuffle_selected);
                     mOptionsMenu.findItem(R.id.action_shuffle).setIcon(R.drawable.shuffle_selected);
-                    Toast.makeText(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT, true).show();
                 }
                 musicSrv.switchShuffle();
             }
@@ -124,12 +141,12 @@ public class PlaySongActivity extends AppCompatActivity {
                 if (musicSrv.getRepeatOn()) {
                     btnRepeat.setImageResource(R.drawable.replay);
                     mOptionsMenu.findItem(R.id.action_repeat).setIcon(R.drawable.rep);
-                    Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT, true).show();
                 }
                 else {
                     btnRepeat.setImageResource(R.drawable.replay1);
                     mOptionsMenu.findItem(R.id.action_repeat).setIcon(R.drawable.rep_selected);
-                    Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT, true).show();
                 }
                 musicSrv.switchRepeat();
             }
@@ -207,6 +224,16 @@ public class PlaySongActivity extends AppCompatActivity {
 
             }
         });
+
+        tvLyrics = findViewById(R.id.tvLyrics);
+        tvLyrics.setMovementMethod(new ScrollingMovementMethod());
+        tvLyrics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view.getVisibility() == View.VISIBLE)
+                    view.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     protected static Runnable updateTimeTask = new Runnable() {
@@ -258,7 +285,7 @@ public class PlaySongActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuPhat:
-                Toast.makeText(this, "Play " + songList.get(currSong).getTitle(), Toast.LENGTH_SHORT).show();
+                Toasty.info(this, "Play " + songList.get(currSong).getTitle(), Toast.LENGTH_SHORT, true).show();
                 musicSrv.setSong(currSong);
                 musicSrv.playSong();
                 break;
@@ -294,7 +321,7 @@ public class PlaySongActivity extends AppCompatActivity {
                         // change setting here
                         Uri ringtoneUri = Uri.parse("content://media" + trackUri.getPath());
                         setRingtone(ringtoneUri);
-                        Toast.makeText(this, "Ringtone set successfully !", Toast.LENGTH_SHORT).show();
+                        Toasty.success(this, "Ringtone set successfully !", Toast.LENGTH_SHORT, true).show();
                     } else {
                         //Migrate to Setting write permission screen.
                         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -369,10 +396,10 @@ public class PlaySongActivity extends AppCompatActivity {
             if (result) {
                 musicSrv.songs.remove(target);
                 songAdapter.notifyDataSetChanged();
-                Toast.makeText(this, "File removed successfully !", Toast.LENGTH_SHORT).show();
+                Toasty.success(this, "File removed successfully !", Toast.LENGTH_SHORT, true).show();
             }
             else {
-                Toast.makeText(this, "Error on deleting file !", Toast.LENGTH_SHORT).show();
+                Toasty.error(this, "Error on deleting file !", Toast.LENGTH_SHORT, true).show();
             }
         }
     }

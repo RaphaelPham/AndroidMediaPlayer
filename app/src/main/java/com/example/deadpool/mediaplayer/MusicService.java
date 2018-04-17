@@ -40,6 +40,8 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.example.deadpool.mediaplayer.MainActivity.*;
 import static com.example.deadpool.mediaplayer.PlaySongActivity.*;
 
@@ -130,7 +132,7 @@ public class MusicService extends Service implements
             // the NotificationChannel class is new and not in the support library
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             // Register the channel with the system
@@ -151,7 +153,7 @@ public class MusicService extends Service implements
             stopSelf();
         }
         // Let it continue running until it is stopped.
-        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+        Toasty.success(this, "Service Started", Toast.LENGTH_LONG, true).show();
         return START_STICKY;
     }
 
@@ -286,6 +288,7 @@ public class MusicService extends Service implements
                 .setOngoing(true)
                 .setColor(Color.argb(255, 19, 186, 189))
                 .setContentIntent(pendInt)
+                .setOnlyAlertOnce(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             nBuilder = nBuilder.setStyle(new NotificationCompat.DecoratedCustomViewStyle())
@@ -330,7 +333,7 @@ public class MusicService extends Service implements
         }
         removeAudioFocus();
         super.onDestroy();
-        Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show();
+        Toasty.warning(this, "Service Destroyed", Toast.LENGTH_LONG, true).show();
     }
 
     @Override
@@ -350,7 +353,8 @@ public class MusicService extends Service implements
         }
         removeAudioFocus();
         super.onTaskRemoved(rootIntent);
-        Toast.makeText(this, "Service removed by user", Toast.LENGTH_LONG).show();
+        Toasty.info(this, "Service removed by user", Toast.LENGTH_LONG, true).show();
+
     }
 
     public void playSong() {
@@ -491,6 +495,9 @@ public class MusicService extends Service implements
                 currArtist.setText(songArtist);
             if (s.albumArt != null && !s.albumArt.equals("") && upLayout != null)
                 upLayout.setBackground(new BitmapDrawable(getResources(), BitmapFactory.decodeFile(s.albumArt)));
+            if (tvLyrics != null) {
+                tvLyrics.setText(s.getLyrics());
+            }
             if (currDuration != null)
                 currDuration.setText(millisToString(songDuration));
             if (progressBar != null && currTime != null) {
@@ -575,7 +582,7 @@ public class MusicService extends Service implements
             if (ButtonClose.equals(intent.getAction())) {
                 LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(MusicService.this);
                 localBroadcastManager.sendBroadcast(new Intent("action.close"));
-                Toast.makeText(context, "MusicPlayer stopped", Toast.LENGTH_SHORT).show();
+                Toasty.info(context, "MusicPlayer stopped", Toast.LENGTH_SHORT, true).show();
             }
             else if (ButtonPrev.equals(intent.getAction())) {
                 goToPrev();
@@ -603,7 +610,7 @@ public class MusicService extends Service implements
                 }
             }
             else {
-                Toast.makeText(context, "Undefined action !", Toast.LENGTH_SHORT).show();
+                Toasty.warning(context, "Undefined action !", Toast.LENGTH_SHORT, true).show();
             }
         }
     }

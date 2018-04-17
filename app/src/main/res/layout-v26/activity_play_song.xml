@@ -15,13 +15,24 @@
         android:layout_weight="6.8"
         android:background="@drawable/app_bg2"
         android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
         android:weightSum="10">
 
         <TextView
             android:visibility="invisible"
+            android:id="@+id/tvLyrics"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8.7" />
+            android:layout_weight="8.7"
+            android:padding="12dp"
+            android:layout_margin="20dp"
+            android:background="@color/colorTransparent1"
+            android:textAlignment="center"
+            android:text="@string/default_song"
+            android:textColor="#fff"
+            android:scrollbars="vertical"
+            android:textSize="15sp"/>
 
         <SeekBar
             android:id="@+id/durationSeekBar"
@@ -29,6 +40,7 @@
             android:layout_height="20dp"
             android:maxHeight="5dp"
             android:layout_marginBottom="8dp"
+            android:clickable="false"
             android:progressDrawable="@drawable/custom_seekbar_progress"
             android:thumb="@drawable/custom_seekbar_thumb" />
 
@@ -49,6 +61,7 @@
                 android:gravity="start"
                 android:text="@string/current_time_example"
                 android:textSize="14sp"
+                android:clickable="false"
                 android:textColor="#fff" />
 
             <TextView
@@ -59,6 +72,7 @@
                 android:gravity="end"
                 android:text="@string/duration_example"
                 android:textSize="14sp"
+                android:clickable="false"
                 android:textColor="#fff" />
         </LinearLayout>
     </LinearLayout>
@@ -146,7 +160,7 @@
                 android:id="@+id/btn_volume"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginEnd="8dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -156,7 +170,7 @@
                 android:id="@+id/btn_prev2"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="6dp"
+                android:layout_marginHorizontal="8dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -164,9 +178,9 @@
 
             <ImageButton
                 android:id="@+id/btn_play2"
-                android:layout_width="68dp"
-                android:layout_height="68dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_width="67dp"
+                android:layout_height="67dp"
+                android:layout_marginHorizontal="6dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -176,7 +190,7 @@
                 android:id="@+id/btn_next2"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="6dp"
+                android:layout_marginHorizontal="8dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"
@@ -186,7 +200,7 @@
                 android:id="@+id/btn_repeat"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginStart="8dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/custom_button_bg"
                 android:scaleType="fitCenter"

@@ -47,6 +47,8 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.example.deadpool.mediaplayer.MusicService.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -232,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         songSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(MainActivity.this, "Search " + query, Toast.LENGTH_SHORT).show();
+                Toasty.normal(MainActivity.this, "Search " + query).show();
                 songAdapter.getFilter().filter(query);
                 return true;
             }
@@ -270,11 +272,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_shuffle:
                 if (musicSrv.getShuffleOn()) {
                     item.setIcon(R.drawable.shuffle_unselected);
-                    Toast.makeText(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT, true).show();
                 }
                 else {
                     item.setIcon(R.drawable.shuffle_selected);
-                    Toast.makeText(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT, true).show();
                 }
                 musicSrv.switchShuffle();
                 return true;
@@ -282,11 +284,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_repeat:
                 if (musicSrv.getRepeatOn()) {
                     item.setIcon(R.drawable.rep);
-                    Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT, true).show();
                 }
                 else {
                     item.setIcon(R.drawable.rep_selected);
-                    Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT, true).show();
                 }
                 musicSrv.switchRepeat();
                 return true;
@@ -324,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                             if (mOptionsMenu != null) {
                                 mOptionsMenu.findItem(R.id.action_removePlaylist).setVisible(true);
                             }
-                            Toast.makeText(MainActivity.this, "Playlist of " + toPlay.size() + " songs set successfully !", Toast.LENGTH_SHORT).show();
+                            Toasty.success(MainActivity.this, "Playlist of " + toPlay.size() + " songs set successfully !", Toast.LENGTH_SHORT, true).show();
                         }
                         dialog.cancel();
                     }
@@ -404,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (checkedItem) {
                             case 0: // turn off
                                 setTimeOn = false;
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_tat, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_tat), Toast.LENGTH_SHORT, true).show();
                                 break;
                             case 1: // after 5 min
                             {
@@ -415,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 300000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_5p, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_5p), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             case 2: // after 10 min
@@ -427,7 +429,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 600000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_10p, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_10p), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             case 3: // after 20 min
@@ -439,7 +441,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 1200000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_20p, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_20p), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             case 4: // after 30 min
@@ -451,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 1800000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_30p, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_30p), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             case 5: // after 1 hour
@@ -463,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 3600000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_1h, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_1h), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             case 6: // after 2 hours
@@ -475,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (setTimeOn) MainActivity.this.finishAffinity();
                                     }
                                 }, 7200000);
-                                Toast.makeText(MainActivity.this, R.string.tb_hen_gio_2p, Toast.LENGTH_SHORT).show();
+                                Toasty.info(MainActivity.this, getResources().getString(R.string.tb_hen_gio_2h), Toast.LENGTH_SHORT, true).show();
                                 break;
                             }
                             default:
@@ -511,7 +513,7 @@ public class MainActivity extends AppCompatActivity {
                 if (mOptionsMenu != null) {
                     mOptionsMenu.findItem(R.id.action_removePlaylist).setVisible(false);
                 }
-                Toast.makeText(MainActivity.this, "Back to the main list", Toast.LENGTH_SHORT).show();
+                Toasty.normal(MainActivity.this, "Back to the main list").show();
                 return true;
 
             default:
@@ -525,7 +527,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuPhat:
-                Toast.makeText(this, "Play " + songList.get(selectedSong).getTitle(), Toast.LENGTH_SHORT).show();
+                Toasty.info(this, "Play " + songList.get(selectedSong).getTitle(), Toast.LENGTH_SHORT, true).show();
                 musicSrv.setSong(selectedSong);
                 musicSrv.playSong();
                 startPlaySongActivity();
@@ -567,7 +569,7 @@ public class MainActivity extends AppCompatActivity {
                         // change setting here
                         Uri ringtoneUri = Uri.parse("content://media" + trackUri.getPath());
                         setRingtone(ringtoneUri);
-                        Toast.makeText(this, "Ringtone set successfully !", Toast.LENGTH_SHORT).show();
+                        Toasty.success(this, "Ringtone set successfully !", Toast.LENGTH_SHORT, true).show();
                     } else {
                         //Migrate to Setting write permission screen.
                         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -595,7 +597,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             default:
-                Toast.makeText(this, "Undefined action !", Toast.LENGTH_SHORT).show();
+                Toasty.warning(this, "Undefined action !", Toast.LENGTH_SHORT, true).show();
                 break;
         }
         return true;
@@ -613,7 +615,7 @@ public class MainActivity extends AppCompatActivity {
         stopService(playIntent);
         unbindService(musicConnection);
         musicSrv = null;
-        Toast.makeText(this, "Service unbound !", Toast.LENGTH_LONG).show();
+        Toasty.info(this, "Service unbound !", Toast.LENGTH_LONG, true).show();
         mLocalBroadcastManager.unregisterReceiver(mBroadcastReceiver);
         PlaySongActivity.mHandler.removeCallbacks(PlaySongActivity.updateTimeTask);
         super.onDestroy();
@@ -669,10 +671,10 @@ public class MainActivity extends AppCompatActivity {
             if (result) {
                 songList.remove(target);
                 songAdapter.notifyDataSetChanged();
-                Toast.makeText(this, "File removed successfully !", Toast.LENGTH_SHORT).show();
+                Toasty.success(this, "File removed successfully !", Toast.LENGTH_SHORT, true).show();
             }
             else {
-                Toast.makeText(this, "Error on deleting file !", Toast.LENGTH_SHORT).show();
+                Toasty.error(this, "Error on deleting file !", Toast.LENGTH_SHORT, true).show();
             }
         }
     }
